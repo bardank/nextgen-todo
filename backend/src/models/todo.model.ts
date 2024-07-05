@@ -19,8 +19,8 @@ export const TodoSchema = new Schema<ITodo>(
   }
 );
 
-TodoSchema.pre<Query<ITodo, ITodo>>(/^find/, async function (next) {
-  await this.populate("user");
+TodoSchema.pre<Query<ITodo, ITodo>>(/^find/, function (next) {
+  void this.populate("user");
   next();
 });
 
