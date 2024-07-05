@@ -16,7 +16,6 @@ interface CreateTodoData {
 
 const CreateTodo = () => {
   const { addTodo } = useTodoStore();
-  const [loading, setLoading] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string | null>(null);
   const CreateTodoSchema = Yup.object().shape({
     title: Yup.string().required(),
@@ -30,18 +29,17 @@ const CreateTodo = () => {
       const res = await createTodoRequest(values.title, values.description);
       addTodo(res.data.todo);
       setError(null);
-      setLoading(false);
       resetForm();
     } catch (error) {
       if (error instanceof AxiosError) {
         console.log(error.message);
         setError(error.response?.data.message);
-        setLoading(false);
       }
     }
   };
   return (
     <div className="bg-gray-800 rounded-lg py-4 px-4">
+      <h3 className="font-semibold text-xl my-4">Create Todo</h3>
       <Formik
         initialValues={{
           title: "",

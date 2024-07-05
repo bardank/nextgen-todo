@@ -23,13 +23,12 @@ const Home = () => {
       const res = await requestMyTodos();
       setTodos(res.data.todos);
 
-      // setTodos(res.data.todos);
     } catch (error) {}
   };
 
   const handleDelete = async (id: string) => {
     try {
-      const res = await deleteTodoRequest(id);
+      await deleteTodoRequest(id);
       removeTodo(id);
     } catch (error) {}
   };

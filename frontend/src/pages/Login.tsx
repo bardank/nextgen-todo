@@ -21,7 +21,6 @@ interface LoginData {
 const Login: React.FC = () => {
   const { login, setTokens } = useAuthStore();
 
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const LoginSchema = Yup.object<LoginData>().shape({
@@ -34,11 +33,9 @@ const Login: React.FC = () => {
       const res = await loginRequest(values.email, values.password);
       login(res.data.user);
       redirect("/");
-      setLoading(false);
       setTokens(res.data.tokens);
       setError(null);
     } catch (error) {
-      setLoading(false);
       if (error instanceof AxiosError) {
         console.log(error.message);
         setError(error.response?.data.message);

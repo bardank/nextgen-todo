@@ -19,7 +19,6 @@ interface RegisterData {
 }
 
 const Register: React.FC = () => {
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const { login, setTokens } = useAuthStore();
   const RegisterSchema = Yup.object<RegisterData>().shape({
@@ -42,10 +41,8 @@ const Register: React.FC = () => {
         login(res.data.user);
         setTokens(res.data.tokens);
       }
-      setLoading(false);
       setError(null);
     } catch (error) {
-      setLoading(false);
       if (error instanceof AxiosError) {
         console.log(error.message);
         setError(error.response?.data.message);
