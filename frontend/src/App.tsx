@@ -13,6 +13,7 @@ import { REFRESH_TOKEN } from "./constants";
 import { useAuthStore } from "./store/auth";
 import { requestCurrentUser } from "./api/user";
 import EditTodo from "./pages/EditTodo";
+import AuthLayout from "./layout/AuthLayout";
 function App() {
   const { user, loading, isAuthenticated, login, logout } = useAuthStore();
   useEffect(() => {
@@ -35,9 +36,11 @@ function App() {
             <Route path="/" Component={Home} />
             <Route path="/todos/:id" Component={EditTodo} />
           </Route>
-          <Route Component={AntiAuthRoutes}>
-            <Route path="/register" Component={Register} />
-            <Route path="/login" Component={Login} />
+          <Route Component={AuthLayout}>
+            <Route Component={AntiAuthRoutes}>
+              <Route path="/register" Component={Register} />
+              <Route path="/login" Component={Login} />
+            </Route>
           </Route>
         </Route>
       </Routes>

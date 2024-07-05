@@ -1,6 +1,6 @@
 //generate login page
 
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import { Link, redirect } from "react-router-dom";
 import Input from "../components/Input";
 import { Formik, FormikProps, Form } from "formik";
@@ -47,48 +47,44 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="w-screen h-screen">
-      <div className="flex justify-center items-center w-full h-full">
-        <div className="flex justify-center items-center flex-col rounded-md bg-gray-800 shadow-md w-[90%] lg:w-[50%] py-8">
-          <h3 className="font-semibold text-center text-3xl">Login</h3>
-          <div className="">
-            <Formik
-              initialValues={{
-                email: "",
-                password: "",
-              }}
-              validationSchema={LoginSchema}
-              onSubmit={handleLogin}
-            >
-              {(props: FormikProps<LoginData>) => (
-                <Form>
-                  <Input
-                    label="Email"
-                    type="email"
-                    name="email"
-                    placeholder={"test@example.com"}
-                  />
-                  <Input
-                    label="Password"
-                    type="password"
-                    name="password"
-                    placeholder={"**********"}
-                  />
-                  <Button className="mt-4" label="Login" type="submit" />
-                  {error && <ErrorMessage message={error} />}
-                </Form>
-              )}
-            </Formik>
-            <div className="mt-4">
-              Don't have an account?
-              <Link to="/register" className="text-blue-500 ml-2">
-                Register
-              </Link>
-            </div>
-          </div>
+    <Fragment>
+      <h3 className="font-semibold text-center text-3xl">Login</h3>
+      <div className="">
+        <Formik
+          initialValues={{
+            email: "",
+            password: "",
+          }}
+          validationSchema={LoginSchema}
+          onSubmit={handleLogin}
+        >
+          {(props: FormikProps<LoginData>) => (
+            <Form>
+              <Input
+                label="Email"
+                type="email"
+                name="email"
+                placeholder={"test@example.com"}
+              />
+              <Input
+                label="Password"
+                type="password"
+                name="password"
+                placeholder={"**********"}
+              />
+              <Button className="mt-4" label="Login" type="submit" />
+              {error && <ErrorMessage message={error} />}
+            </Form>
+          )}
+        </Formik>
+        <div className="mt-4">
+          Don't have an account?
+          <Link to="/register" className="text-blue-500 ml-2">
+            Register
+          </Link>
         </div>
       </div>
-    </div>
+    </Fragment>
   );
 };
 

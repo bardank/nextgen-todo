@@ -1,12 +1,11 @@
 //generate Register page
 
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import Input from "../components/Input";
 import { Formik, FormikProps, Form } from "formik";
 import * as Yup from "yup";
 import Button from "../components/Button";
-import axios from "../libs/axios";
 import { useAuthStore } from "../store/auth";
 import { AxiosError } from "axios";
 import ErrorMessage from "../components/ErrorMessage";
@@ -55,62 +54,58 @@ const Register: React.FC = () => {
   };
 
   return (
-    <div className="w-screen h-screen">
-      <div className="flex justify-center items-center w-full h-full">
-        <div className="flex justify-center items-center flex-col rounded-md bg-gray-800 shadow-md w-[90%] lg:w-[50%] py-8">
-          <h3 className="font-semibold text-center text-3xl">Register</h3>
-          <div className="">
-            <Formik
-              initialValues={{
-                name: "",
-                email: "",
-                password: "",
-                confirmPassword: "",
-              }}
-              validationSchema={RegisterSchema}
-              onSubmit={handleRegister}
-            >
-              {(props: FormikProps<RegisterData>) => (
-                <Form>
-                  <Input
-                    label="Name"
-                    type="text"
-                    name="name"
-                    placeholder={"Your Name"}
-                  />
-                  <Input
-                    label="Email"
-                    type="email"
-                    name="email"
-                    placeholder={"test@example.com"}
-                  />
-                  <Input
-                    label="Password"
-                    type="password"
-                    name="password"
-                    placeholder={"test@example.com"}
-                  />
-                  <Input
-                    label="Confirm Password"
-                    type="password"
-                    name="confirmPassword"
-                    placeholder={"Confirm Password"}
-                  />
-                  <Button className="mt-4" label="Register" type="submit" />
-                </Form>
-              )}
-            </Formik>
-            {error && <ErrorMessage message={error} />}
-            <div className="mt-4">
-              Already have an account?
-              <Link to="/login" className="text-blue-500 ml-2">
-                Login
-              </Link>
-            </div>
-          </div>
+    <Fragment>
+      <h3 className="font-semibold text-center text-3xl">Register</h3>
+      <div className="">
+        <Formik
+          initialValues={{
+            name: "",
+            email: "",
+            password: "",
+            confirmPassword: "",
+          }}
+          validationSchema={RegisterSchema}
+          onSubmit={handleRegister}
+        >
+          {(props: FormikProps<RegisterData>) => (
+            <Form>
+              <Input
+                label="Name"
+                type="text"
+                name="name"
+                placeholder={"Your Name"}
+              />
+              <Input
+                label="Email"
+                type="email"
+                name="email"
+                placeholder={"test@example.com"}
+              />
+              <Input
+                label="Password"
+                type="password"
+                name="password"
+                placeholder={"test@example.com"}
+              />
+              <Input
+                label="Confirm Password"
+                type="password"
+                name="confirmPassword"
+                placeholder={"Confirm Password"}
+              />
+              <Button className="mt-4" label="Register" type="submit" />
+            </Form>
+          )}
+        </Formik>
+        {error && <ErrorMessage message={error} />}
+        <div className="mt-4">
+          Already have an account?
+          <Link to="/login" className="text-blue-500 ml-2">
+            Login
+          </Link>
         </div>
       </div>
-    </div>
+    </Fragment>
   );
 };
 
