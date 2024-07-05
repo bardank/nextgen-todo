@@ -14,14 +14,6 @@ app.use(morgan("dev"));
 app.use(
   cors({
     origin: function (origin, callback) {
-      if (!origin) { callback(null, true); return; }
-      const allowedOrigins = ["http://localhost:3000"];
-      if (!allowedOrigins.includes(origin)) {
-        const msg =
-          "The CORS policy for this site does not " +
-          "allow access from the specified Origin.";
-        callback(new Error(msg), false); return;
-      }
       callback(null, true);
     },
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
