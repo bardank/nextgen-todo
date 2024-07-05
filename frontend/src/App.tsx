@@ -36,8 +36,8 @@ function App() {
             <Route path="/" Component={Home} />
             <Route path="/todos/:id" Component={EditTodo} />
           </Route>
-          <Route Component={AuthLayout}>
-            <Route Component={AntiAuthRoutes}>
+          <Route Component={AntiAuthRoutes}>
+            <Route Component={AuthLayout}>
               <Route path="/register" Component={Register} />
               <Route path="/login" Component={Login} />
             </Route>
