@@ -8,6 +8,10 @@ NextGen ToDo is a modern web application built using the MERN stack (MongoDB, Ex
 
 Check out the live demo of the application [here](http://13.239.40.14/).
 
+### Test Account Info
+- email : test@example.com
+- password : test@1234
+
 ## ✨ Features
 
 - 🔐 User Authentication (Sign Up, Login, Logout)
