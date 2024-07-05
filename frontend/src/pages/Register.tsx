@@ -1,7 +1,7 @@
 //generate Register page
 
 import React, { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 import Input from "../components/Input";
 import { Formik, FormikProps, Form } from "formik";
 import * as Yup from "yup";
@@ -38,8 +38,10 @@ const Register: React.FC = () => {
         values.password
       );
       if (res.status === 201) {
+        console.log(res.data);
         login(res.data.user);
         setTokens(res.data.tokens);
+        redirect("/");
       }
       setError(null);
     } catch (error) {

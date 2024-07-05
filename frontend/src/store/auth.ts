@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import { User } from "../types/user";
-import { UserWithTokens } from "../types/auth";
 import { setCookie, getCookie, removeCookie } from "../customHooks/useCookie";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import { AccessAndRefreshTokens } from "../types/token";

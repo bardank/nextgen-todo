@@ -6,7 +6,6 @@ import { FullPageLoader } from "./loaders/FullPageLoader";
 
 const ProtectRoutes: FC = () => {
   const { user, loading, isAuthenticated } = useAuthStore();
-  console.log(user, isAuthenticated, loading);
   if (loading) {
     return <FullPageLoader/>;
   }

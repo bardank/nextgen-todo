@@ -40,8 +40,8 @@ router.post(
     async (req: RegisterRequest, res: Response, next: NextFunction) => {
       const { name, email, password } = req.body;
 
-      const user = await authService.register(name, email, password);
-      return res.status(201).json({ user });
+      const data = await authService.register(name, email, password);
+      return res.status(201).json({ ...data });
     }
   )
 );

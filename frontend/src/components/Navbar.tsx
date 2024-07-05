@@ -4,14 +4,17 @@ import { useAuthStore } from "../store/auth";
 import { logoutRequest } from "../api/auth";
 import { getCookie } from "../customHooks/useCookie";
 import { REFRESH_TOKEN } from "../constants";
+import useTodoStore from "../store/todos";
 const Navbar = () => {
   const { user, loading, isAuthenticated, logout } = useAuthStore();
+  const { setTodos } = useTodoStore();
   const onLogout = async () => {
     try {
       await logoutRequest(getCookie(REFRESH_TOKEN) ?? "");
     } catch (error) {
     } finally {
       logout();
+      setTodos([]);
     }
   };
   return (
@@ -28,7 +31,7 @@ const Navbar = () => {
         )}
         {!isAuthenticated && (
           <>
-            <NavItem label="Login" to="/login" />
+            <NavItem label="Register" to="/register" />
           </>
         )}
       </ul>

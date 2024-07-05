@@ -32,8 +32,8 @@ const Login: React.FC = () => {
     try {
       const res = await loginRequest(values.email, values.password);
       login(res.data.user);
-      redirect("/");
       setTokens(res.data.tokens);
+      redirect("/");
       setError(null);
     } catch (error) {
       if (error instanceof AxiosError) {
